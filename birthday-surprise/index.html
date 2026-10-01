@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Happy Birthday ❤️</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3, #a18cd1);
+    min-height: 100vh;
+    overflow-x: hidden;
+    color: white;
+}
+
+/* Animated background */
+
+body::before {
+    content: "";
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    background: rgba(255,255,255,0.12);
+    border-radius: 50%;
+    top: -200px;
+    left: -150px;
+    filter: blur(30px);
+    animation: moveBlob 8s infinite alternate;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    bottom: -250px;
+    right: -150px;
+    filter: blur(30px);
+    animation: moveBlob2 10s infinite alternate;
+}
+
+@keyframes moveBlob {
+    from { transform: translate(0,0); }
+    to { transform: translate(150px,100px); }
+}
+
+@keyframes moveBlob2 {
+    from { transform: translate(0,0); }
+    to { transform: translate(-120px,-100px); }
+}
+
+/* Main */
+
+.container {
+    position: relative;
+    z-index: 5;
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+    padding: 30px 20px 80px;
+    text-align: center;
+}
+
+/* Opening screen */
+
+.opening {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.opening h1 {
+    font-size: clamp(45px, 9vw, 90px);
+    animation: glow 2s infinite alternate;
+}
+
+.opening p {
+    font-size: 20px;
+    margin-top: 15px;
+    opacity: .9;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 10px white;
+    }
+    to {
+        text-shadow:
+        0 0 20px white,
+        0 0 40px #fff,
+        0 0 70px #ffb6c1;
+    }
+}
+
+.open-btn {
+    margin-top: 35px;
+    padding: 17px 35px;
+    border: none;
+    border-radius: 50px;
+    background: white;
+    color: #e84393;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0,0,0,.2);
+    transition: .3s;
+}
+
+.open-btn:hover {
+    transform: scale(1.08);
+}
+
+/* Hidden content */
+
+#birthdayContent {
+    display: none;
+    animation: fadeIn 1.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Heading */
+
+.title {
+    font-size: clamp(38px, 8vw, 75px);
+    margin-top: 30px;
+    animation: heartbeat 2s infinite;
+}
+
+@keyframes heartbeat {
+    0%,100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.subtitle {
+    font-size: 22px;
+    margin-top: 10px;
+}
+
+/* Birthday cake */
+
+.cake {
+    font-size: 100px;
+    margin: 30px 0;
+    animation: cakeFloat 3s infinite ease-in-out;
+}
+
+@keyframes cakeFloat {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+/* Letter */
+
+.letter {
+    max-width: 750px;
+    margin: 30px auto;
+    padding: 35px;
+    background: rgba(255,255,255,.18);
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 25px;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 15px 50px rgba(0,0,0,.2);
+}
+
+.letter h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.letter p {
+    font-size: 18px;
+    line-height: 1.9;
+}
+
+/* Photo gallery */
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 18px;
+    max-width: 900px;
+    margin: 40px auto;
+}
+
+.photo {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.25);
+    transition: .4s;
+}
+
+.photo:hover {
+    transform: scale(1.05) rotate(1deg);
+}
+
+/* Music */
+
+.music-box {
+    margin: 40px auto;
+    padding: 25px;
+    max-width: 600px;
+    background: rgba(255,255,255,.15);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+}
+
+.music-box button {
+    border: none;
+    padding: 13px 25px;
+    border-radius: 30px;
+    background: white;
+    color: #e84393;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Final message */
+
+.final-message {
+    margin-top: 60px;
+    padding: 35px;
+}
+
+.final-message h2 {
+    font-size: 38px;
+    margin-bottom: 20px;
+}
+
+.final-message p {
+    font-size: 19px;
+    line-height: 1.8;
+}
+
+/* Floating hearts */
+
+.heart {
+    position: fixed;
+    bottom: -30px;
+    font-size: 25px;
+    pointer-events: none;
+    animation: floatHeart linear forwards;
+    z-index: 20;
+}
+
+@keyframes floatHeart {
+    from {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Stars */
+
+.star {
+    position: fixed;
+    width: 5px;
+    height: 5px;
+    background: white;
+    border-radius: 50%;
+    opacity: .7;
+    animation: twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle {
+    from { opacity: .2; transform: scale(.5); }
+    to { opacity: 1; transform: scale(1.4); }
+}
+
+/* Responsive */
+
+@media(max-width:700px) {
+
+    .container {
+        padding: 20px 15px 60px;
+    }
+
+    .opening p {
+        font-size: 16px;
+    }
+
+    .letter {
+        padding: 25px 20px;
+    }
+
+    .letter p {
+        font-size: 16px;
+    }
+
+    .gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .photo {
+        height: 350px;
+    }
+
+    .cake {
+        font-size: 80px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Opening Screen -->
+
+<section class="opening" id="opening">
+
+    <div class="container">
+
+        <div style="font-size:70px;">🎁</div>
+
+        <h1>A Special Surprise ❤️</h1>
+
+        <p>Someone special has a birthday today...</p>
+
+        <button class="open-btn" onclick="openBirthday()">
+            💌 Open Your Birthday Letter
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- Birthday Content -->
+
+<main id="birthdayContent">
+
+<div class="container">
+
+    <div class="cake">🎂</div>
+
+    <h1 class="title">
+        Happy Birthday Tintii ❤️
+    </h1>
+
+    <p class="subtitle">
+        To My Most Special Person ✨
+    </p>
+
+
+    <!-- Letter -->
+
+    <div class="letter">
+
+        <h2>💌Wish You a Happy Birthday Behna </h2>
+
+        <p>
+            Today is not just another day.
+            Today is the day someone incredibly special
+            came into this world. ❤️
+        </p>
+
+        <br>
+
+        <p>
+            I hope your birthday is filled with happiness,
+            beautiful memories, endless smiles and all
+            the love your heart can hold.
+        </p>
+
+        <br>
+
+        <p>
+            You deserve every beautiful thing life has to offer.
+            May every dream in your heart slowly become reality.
+        </p>
+
+        <br>
+
+        <p>
+            Thank you for being such a beautiful part of my life.
+            Wherever life takes us, I will always wish happiness
+            for you.
+        </p>
+
+        <br>
+
+        <p>
+            Once again...
+        </p>
+
+        <br>
+
+        <h2>
+            🎂 Happy Birthday, My Love ❤️
+        </h2>
+
+    </div>
+
+
+    <!-- Photos -->
+
+    <h2 style="font-size:35px;margin-top:50px;">
+        📸 Beautiful Memories
+    </h2>
+
+    <div class="gallery">
+
+        <img src="photo1.jpg" class="photo">
+
+        <img src="photo2.jpg" class="photo">
+
+        <img src="photo3.jpg" class="photo">
+
+    </div>
+
+
+    <!-- Music -->
+
+    <div class="music-box">
+
+        <h2>🎵 Birthday Song</h2>
+
+        <p style="margin:15px;">
+            A little song for your special day ❤️
+        </p>
+
+        <audio id="birthdaySong" loop>
+
+            <source src="birthday-song.mp3" type="audio/mpeg">
+
+            Your browser does not support audio.
+
+        </audio>
+
+        <button onclick="toggleMusic()" id="musicButton">
+            ▶ Play Birthday Song
+        </button>
+
+    </div>
+
+
+    <!-- Final Surprise -->
+
+    <div class="final-message">
+
+        <h2>✨ One More Thing...</h2>
+
+        <p>
+            No matter how many birthdays come and go,
+            I hope you always remember how special you are.
+        </p>
+
+        <br>
+
+        <p>
+            Keep smiling. Keep dreaming.
+            And never forget that you are loved. ❤️
+        </p>
+
+        <br>
+
+        <div style="font-size:60px;">
+            ❤️ 🎂 🎁 🌹 ❤️
+        </div>
+
+        <h2 style="margin-top:30px;">
+            Happy Birthday Once Again! 🥳
+        </h2>
+
+    </div>
+
+</div>
+
+</main>
+
+
+<script>
+
+/* Open birthday */
+
+function openBirthday() {
+
+    document.getElementById("opening").style.display = "none";
+
+    document.getElementById("birthdayContent").style.display = "block";
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+    createHearts();
+
+    createStars();
+
+    /* Try to start music */
+
+    const song = document.getElementById("birthdaySong");
+
+    song.play().then(() => {
+
+        document.getElementById("musicButton").innerHTML =
+        "⏸ Pause Birthday Song";
+
+    }).catch(() => {
+
+        console.log("Browser requires music button click.");
+
+    });
+
+}
+
+
+/* Music button */
+
+function toggleMusic() {
+
+    const song = document.getElementById("birthdaySong");
+
+    const button = document.getElementById("musicButton");
+
+    if (song.paused) {
+
+        song.play();
+
+        button.innerHTML = "⏸ Pause Birthday Song";
+
+    } else {
+
+        song.pause();
+
+        button.innerHTML = "▶ Play Birthday Song";
+
+    }
+
+}
+
+
+/* Floating hearts */
+
+function createHearts() {
+
+    setInterval(() => {
+
+        const heart = document.createElement("div");
+
+        heart.className = "heart";
+
+        const hearts = ["❤️","💖","💕","💗","💓","💘","🌹"];
+
+        heart.innerHTML =
+        hearts[Math.floor(Math.random() * hearts.length)];
+
+        heart.style.left =
+        Math.random() * 100 + "vw";
+
+        heart.style.animationDuration =
+        (4 + Math.random() * 5) + "s";
+
+        heart.style.fontSize =
+        (18 + Math.random() * 25) + "px";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+
+            heart.remove();
+
+        },9000);
+
+    },400);
+
+}
+
+
+/* Stars */
+
+function createStars() {
+
+    for(let i = 0; i < 50; i++) {
+
+        const star = document.createElement("div");
+
+        star.className = "star";
+
+        star.style.left =
+        Math.random() * 100 + "vw";
+
+        star.style.top =
+        Math.random() * 100 + "vh";
+
+        star.style.animationDelay =
+        Math.random() * 2 + "s";
+
+        document.body.appendChild(star);
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
